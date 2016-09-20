@@ -5,7 +5,7 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def create
-    @moderator = Moderator.find_by(username: params[:username]).authenticate(params[:password])
+    @moderator = Moderator.find_by(username: params[:username]).try(:authenticate, params[:password])
     if @moderator
       session[:current_moderator_id] = @moderator.id
       redirect_to admin_moderators_url, notice: "You have successfully signed in"
@@ -16,5 +16,7 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def destroy
+    session[:current_moderator_id] = nil
+    redirect_to '/login', notice: "You have successfully loged out"
   end
 end
