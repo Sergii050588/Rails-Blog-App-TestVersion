@@ -14,11 +14,10 @@ class Admin::ModeratorsController < ApplicationController
         flash[:notice] = "Moderator was succesfully updated"
         redirect_to admin_moderators_url
       else
-        flash[:alert] = "There was a problem"
+        flash[:alert] = "There was a problem updating moderator"
         render 'edit'
       end
   end
-
 
   private
 
