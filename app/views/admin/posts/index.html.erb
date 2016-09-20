@@ -1,1 +1,31 @@
-<h1>Admin::Posts#index</h1>
+<h1>Posts</h1>
+
+<p> <%= link_to 'New Post', new_admin_post_path %></p>
+
+<table class="table table-bordered ${1:table-hover}">
+  <thead>
+  <tr>
+    <th>title</th>
+    <th>content</th>
+    <th>publish</th>
+    <th>created_at</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr>
+        <td><%= truncate(post.title, length: 80, separate: '') %></td>
+        <td><%= truncate(post.content, length: 80, separate: '') %></td>
+        <td><%= status_converter(post.publish, truthy: 'Active', falsey: 'Pending') %></td>
+        <td><%= time_ago_in_words(post.created_at) %> ago</td>
+        <td>
+          <%= link_to "Edit", edit_admin_post_path(post) %> |
+          <%= link_to "Show", admin_post_path(post) %> |
+          <%= link_to "Delete", admin_post_path(post), method: :delete, data: {confirm: 'Are you shure?'} %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><%= paginate @posts %></p>
