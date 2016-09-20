@@ -1,9 +1,12 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Admin::ApplicationController
+  before_action :authorize, except: [:new, :create]
 
   def new
   end
 
   def create
+    @moderator = Moderator.find_by(username: params[:username]).authorize(params[:password])
+    session[:current_moderator_id] = @moderator.id
   end
 
   def destroy

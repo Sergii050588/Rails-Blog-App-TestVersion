@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 moderator = Moderator.create(
-                         fullname: "MSA",
-                         username: "Sergii",
+                         fullname: "Sergii",
+                         username: "Sergii@mail.ru",
                          password: "password"
 )

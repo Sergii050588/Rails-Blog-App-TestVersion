@@ -1,4 +1,4 @@
-class Admin::ModeratorsController < ApplicationController
+class Admin::ModeratorsController < Admin::ApplicationController
 
   def index
     @moderator = Moderator.all
