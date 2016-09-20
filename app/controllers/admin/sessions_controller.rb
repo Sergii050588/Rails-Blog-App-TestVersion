@@ -17,6 +17,6 @@ class Admin::SessionsController < Admin::ApplicationController
 
   def destroy
     session[:current_moderator_id] = nil
-    redirect_to '/login', notice: "You have successfully loged out"
+    redirect_to '/login', notice: "You have successfully logged out"
   end
 end
