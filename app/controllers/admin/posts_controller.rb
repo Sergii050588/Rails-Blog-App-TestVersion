@@ -25,9 +25,17 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to admin_post_url, notice: 'Post updated'
+      else
+        flash[:alert] = 'There was a problem in creating a post'
+      render :edit
+    end
   end
 
   def show
