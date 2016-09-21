@@ -32,8 +32,8 @@ class Admin::PostsController < Admin::ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to admin_post_url, notice: 'Post updated'
-      else
-        flash[:alert] = 'There was a problem in creating a post'
+    else
+      flash[:alert] = 'There was a problem in creating a post'
       render :edit
     end
   end
@@ -43,6 +43,10 @@ class Admin::PostsController < Admin::ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    redirect_to :back, notice: 'Post was successfully deleted'
   end
 
   private
