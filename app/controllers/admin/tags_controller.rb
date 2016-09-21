@@ -13,9 +13,17 @@ class Admin::TagsController < Admin::ApplicationController
   end
 
   def edit
+    @tag = Tag.find(params[:id])
   end
 
   def update
+    @tag = Tag.find(params[:id])
+    if @tag.update(tags_params)
+      redirect_to new_admin_tag_url, notice: 'Tag updated'
+    else
+      flash[:alert] = 'There was a problem updating tag'
+      render :edit
+    end
   end
 
   def show
